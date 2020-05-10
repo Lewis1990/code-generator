@@ -1,0 +1,18 @@
+<#macro _package_name>service</#macro>
+<#macro _file_name_suffix>Service</#macro>
+<#macro _suffix>java</#macro>
+<#macro _with_table>yes</#macro>
+<#macro _dto_name_suffix>Dto</#macro>
+
+<#assign paramName = className?uncap_first>
+public interface ${className!""}<@_file_name_suffix/> {
+
+    public List<${className!""}<@_dto_name_suffix/>> query(${className!""}<@_dto_name_suffix/> ${paramName!""});
+
+    public int insert(${className!""}<@_dto_name_suffix/> ${paramName!""});
+
+    public int delete(${className!""}<@_dto_name_suffix/> ${paramName!""});
+
+    public int update(${className!""}<@_dto_name_suffix/> ${paramName!""});
+
+}

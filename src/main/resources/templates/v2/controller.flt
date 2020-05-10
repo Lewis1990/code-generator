@@ -1,0 +1,30 @@
+<#macro _package_name>controller</#macro>
+<#macro _file_name_suffix>Controller</#macro>
+<#macro _suffix>java</#macro>
+<#macro _with_table>yes</#macro>
+
+<#assign paramName = className?uncap_first>
+<#assign clsDto = className + "Dto" paramDto = paramName + "Dto" clsService = paramName + "Service"/>
+
+@RestController
+@RequestMapping("")
+public class ${className!""}<@_file_name_suffix/> {
+
+    public ${className!""}Service ${clsService!""};
+
+    public void list() {
+    }
+
+    public void get() {
+    }
+
+    public void add() {
+    }
+
+    public void update() {
+
+    }
+
+    public void delete() {
+    }
+}

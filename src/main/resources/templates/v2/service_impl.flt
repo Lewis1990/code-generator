@@ -1,0 +1,49 @@
+<#macro _package_name>service/impl</#macro>
+<#macro _file_name_suffix>ServiceImpl</#macro>
+<#macro _suffix>java</#macro>
+<#macro _with_table>yes</#macro>
+
+<#assign paramName = className?uncap_first>
+<#assign clsDto = className + "Dto" paramDto = paramName + "Dto" clsDao = paramName + "Dao"/>
+
+//uncap_first、cap_first:首字母大寫和小寫
+public class ${className!""}<@_file_name_suffix/> {
+
+    private ${className!""}Dao ${clsDao!""};
+
+    <#assign priType = 'String' priField = "id">
+    <#list columns as item>
+        <#if item.priKey == 'PRI'><#assign priType = item.classField.dataType!"" priField = item.classField.field!""></#if>
+    </#list>
+    public ${clsDto!""} get(${priType!""} ${priField!""}) {
+        ${className!""} ${paramName!""} = new ${className!""}();
+        ${paramName!""}.set${priField?cap_first}(${priField!""});
+        List<${clsDto}> list = ${clsDao!""}.query(${paramName!""});
+        if (null != list && list.size() > 0) {
+            return BeanMapper.toObj(list.get(0), ${clsDto}.class);
+        }
+        return null;
+    }
+
+    public List<${clsDto!""}> query(${clsDto!""} ${paramDto!""}) {
+        ${className!""} ${paramName!""} = BeanMapper.toObj(${paramDto!""}, ${className}.class);
+        List<${clsDto}> list = ${clsDao!""}.query(${paramName!""});
+        return BeanMapper.toList(list, ${clsDto}.class);
+    }
+
+    public int insert(${clsDto!""} ${paramDto!""}) {
+        ${className!""} ${paramName!""} = BeanMapper.toObj(${paramDto!""}, ${className}.class);
+        return ${clsDao!""}.insert(${paramName!""});
+    }
+
+    public int delete(${clsDto!""} ${paramDto!""}) {
+        ${className!""} ${paramName!""} = BeanMapper.toObj(${paramDto!""}, ${className}.class);
+        return ${clsDao!""}.delete(${paramName!""});
+    }
+
+    public int update(${clsDto!""} ${paramDto!""}) {
+        ${className!""} ${paramName!""} = BeanMapper.toObj(${paramDto!""}, ${className}.class);
+        return ${clsDao!""}.update(${paramName!""});
+    }
+
+}

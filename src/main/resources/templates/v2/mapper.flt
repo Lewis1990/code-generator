@@ -1,0 +1,6 @@
+<#macro _package_name>mapper</#macro>
+<#macro _suffix>xml</#macro>
+<#macro _with_table>yes</#macro>
+
+
+先休息

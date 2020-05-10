@@ -1,0 +1,15 @@
+<#macro _package_name>entity</#macro>
+<#macro _suffix>java</#macro>
+<#macro _with_table>yes</#macro>
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ${className!""} {
+
+<#list columns as item>
+    private ${item.classField.dataType!""} ${item.classField.field!""};
+
+</#list>
+}

@@ -1,0 +1,17 @@
+<#macro _package_name>dto</#macro>
+<#macro _file_name_suffix>Dto</#macro>
+<#macro _suffix>java</#macro>
+<#macro _with_table>yes</#macro>
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ${className!""}<@_file_name_suffix/> {
+
+<#list field as item>
+    private ${item.classField.dataType!""} ${item.classField.field!""};
+
+</#list>
+}

@@ -1,0 +1,16 @@
+<#macro _package_name>dao</#macro>
+<#macro _file_name_suffix>Dao</#macro>
+<#macro _suffix>java</#macro>
+<#macro _with_table>yes</#macro>
+<#assign paramName = className?uncap_first>
+public interface ${className!""}<@_file_name_suffix/> {
+
+    public List<${className!""}> query(${className!""} ${paramName!""});
+
+    public int insert(${className!""} ${paramName!""});
+
+    public int delete(${className!""} ${paramName!""});
+
+    public int update(${className!""} ${paramName!""});
+
+}
